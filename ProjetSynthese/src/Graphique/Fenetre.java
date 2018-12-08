@@ -5,36 +5,39 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Fenetre {
-    Frame f1AR;
-    static short numero=0;
+	
 
-    public Fenetre(Forme obj) {
+  Frame f1AR;
+  BufferStrategy stratégie;
+  public Graphics graphics;
+  
+  static int numero=0;
+
+    public Fenetre() throws Erreur {
         try {
-            f1AR = new Frame(" Superbe Frame unique et inï¿½galable nï¿½" + (++numero));
+            f1AR = new Frame(" Frame n°" + (++numero));
 
-            f1AR.setBounds(30, 60, 400, 400);       // coordonnï¿½es en dur : trï¿½s maladroit
+            f1AR.setBounds(30, 60, 400, 400);       // coordonnées en dur : très maladroit
+            f1AR.setVisible(true);              // rend le frame visible sur l'écran
+            f1AR.setIgnoreRepaint(true);        // désactive l'appel automatique de la fct paint(...) par repaint()
 
-            f1AR.setVisible(true);              // rend le frame visible sur l'ï¿½cran
-            f1AR.setIgnoreRepaint(true);        // dï¿½sactive l'appel automatique de la fct paint(...) par repaint()
 
+            f1AR.createBufferStrategy(1);  // crée une stratégie de tampon d'image à 1 tampon vidéo
+            Thread.sleep(150);                       // au moins 150 ms !!!! pour laisser au système le temps de créer le buffer d'image
 
-            int numBuffers = 1;
-            f1AR.createBufferStrategy(numBuffers);  // crï¿½e une stratï¿½gie de tampon d'image ï¿½ 1 tampon vidï¿½o
-            Thread.sleep(150);                       // au moins 150 ms !!!! pour laisser au systï¿½me le temps de crï¿½er le buffer d'image
-
-            BufferStrategy strategie = f1AR.getBufferStrategy();
-            Graphics graphics = strategie.getDrawGraphics();
-// le graphics sert ï¿½ dessiner sur le tampon
-
-            obj.dessiner(graphics);
-
-            strategie.show();       // place le tampon sur l'ï¿½cran : la technique utilisï¿½e dï¿½pend du type de stratï¿½gie utilisï¿½ : blitting, pointeur vidï¿½o, etc.
-
-            graphics.dispose();     // En finir avec la vie
+            stratégie = f1AR.getBufferStrategy();
+            graphics = stratégie.getDrawGraphics(); // le graphics sert à dessiner sur le tampon
         }
 
-catch (InterruptedException e) {
-            // il n'y ï¿½ rien ï¿½ faire sauf mourir
+        catch (InterruptedException e) {
+        		throw new Erreur("Impossible de créer la fenetre");
         }
     }
+    
+    public void afficher() {
+
+        stratégie.show();       // place le tampon sur l'écran : la technique utilisée dépend du type de stratégie utilisé : blitting, pointeur vidéo, etc.
+        graphics.dispose();    
+    }
 }
+

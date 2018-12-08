@@ -12,7 +12,7 @@ public abstract class Forme {
 	}
     //Afficher cette forme sur une nouvelle fenêtre
     public void afficher() {
-        Fenetre fun = new Fenetre(this);
+        Fenetre fun = new Fenetre();
     }
 
     //Dessiner la forme

@@ -1,28 +1,39 @@
 package COR;
 
+import java.util.Scanner;
+
+import Graphique.Erreur;
+import Graphique.Fenetre;
+
 public class InterfaceCercle extends InterfaceForme {
 
 	public InterfaceCercle(InterfaceForme suivant) {
 		super(suivant);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public boolean saitInteragir(Object choix) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean saitInteragir(String msg) {
+        if (msg.contains("Cercle")) {
+        	return true;
+        }
+        return false;
 	}
 
 	@Override
-	public void executerInteraction(Object o) {
-		// TODO Auto-generated method stub
+	public void executerInteraction(String msg) throws Erreur {
 		
-	}
+		 Scanner scanner = new Scanner(msg.substring(msg.indexOf(":")+1, msg.length()));
 
-	@Override
-	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		 int     xCentre = scanner.nextInt(),
+                 yCentre = scanner.nextInt(),
+                 rayon   = scanner.nextInt();
+
+
+         Fenetre fen = new Fenetre();
+
+         fen.graphics.drawOval (xCentre, yCentre, rayon, rayon); // dessine sur le tampon vidéo. coordonnées en dur : très maladroit
+         fen.afficher();  
+
 	}
 
 }

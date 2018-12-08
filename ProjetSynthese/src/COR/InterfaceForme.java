@@ -1,5 +1,7 @@
 package COR;
 
+import Graphique.Erreur;
+
 public abstract class InterfaceForme {
 	
 	private InterfaceForme suivant=null;
@@ -17,18 +19,17 @@ public abstract class InterfaceForme {
 	}
 	
 	
-	public abstract boolean saitInteragir(Object choix);
-	public abstract void executerInteraction(Object o);
-	public abstract String getDescription();
+	public abstract boolean saitInteragir(String msg);
+	public abstract void executerInteraction(String msg) throws Erreur;
 	
-	public void interagir(Object choix) throws Exception {
+	public void interagir(String msg) throws Exception {
 		
-		if (saitInteragir(choix))
-			executerInteraction(choix);
+		if (saitInteragir(msg))
+			executerInteraction(msg);
 		else if (suivant != null)
-			suivant.interagir(choix);
+			suivant.interagir(msg);
 		else 
-			throw new Exception("pas d'interaction pour"+ choix);
+			throw new Exception("pas d'interaction pour"+ msg);
 		
 	}
 	

@@ -1,7 +1,7 @@
 package Serveur;
 import java.net.*;
 
-import ReceveurEnvoyeur;
+import Serveur.ReceveurEnvoyeur;
 
 public class Serveur {
 
