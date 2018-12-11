@@ -20,7 +20,7 @@ public abstract class InterfaceForme {
 	
 	
 	public abstract boolean saitInteragir(String msg);
-	public abstract void executerInteraction(String msg) throws Erreur;
+	public abstract void executerInteraction(String msg) throws Erreur, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException;
 	
 	public void interagir(String msg) throws Exception {
 		

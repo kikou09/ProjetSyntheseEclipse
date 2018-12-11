@@ -1,8 +1,8 @@
 package Serveur;
 
-import Formes.*;
-import java.net.*;
 import java.io.*;
+import java.net.Socket;
+
 /**
  * thread et socket cot� serveur :  traite les requ�tes d'un client
  * ici le serveur, pour chaque cha�ne de caract�res re�ue d'un client, la transforme en majuscule puis la renvoie au client
@@ -36,14 +36,14 @@ public class ReceveurEnvoyeur extends Thread  {
 
         String ligne;	String reponse;
 
-        try  {
+        /*try  {
 
             ligne = fluxEntrant.readLine(); // saisit le texte du client
             System.out.println(" le client n� "+this.noConnexion+" a envoy� : ");
             System.out.println(ligne); // �cho de la question sur la console
             System.out.println(ligne); // �cho de la question sur la console
 
-            Forme obj = new Croix(new Rond(null)).charger(ligne); //Interpr�tation du msg par ces doux experts
+            //Forme obj = new Croix(new Rond(null)).charger(ligne); //Interpr�tation du msg par ces doux experts
 
             if(obj!=null) {
                 reponse = ligne.concat(" a ete cree.\n");
@@ -56,5 +56,6 @@ public class ReceveurEnvoyeur extends Thread  {
 
         catch(IOException erreur) { System.err.println(" on ne peut pas lire sur le socket provenant du client");}
 
-    }// run
+    }// run*/
 } // ReceveurEnvoyeur
+}

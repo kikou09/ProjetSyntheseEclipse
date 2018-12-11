@@ -1,6 +1,5 @@
 package Graphique;
 
-import Formes.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -8,35 +7,35 @@ public class Fenetre {
 	
 
   Frame f1AR;
-  BufferStrategy stratégie;
+  BufferStrategy strategie;
   public Graphics graphics;
   
   static int numero=0;
 
     public Fenetre() throws Erreur {
         try {
-            f1AR = new Frame(" Frame n°" + (++numero));
+            f1AR = new Frame(" Frame numero " + (++numero));
 
-            f1AR.setBounds(30, 60, 400, 400);       // coordonnées en dur : très maladroit
-            f1AR.setVisible(true);              // rend le frame visible sur l'écran
-            f1AR.setIgnoreRepaint(true);        // désactive l'appel automatique de la fct paint(...) par repaint()
+            f1AR.setBounds(30, 60, 400, 400);       // coordonnï¿½es en dur : trï¿½s maladroit
+            f1AR.setVisible(true);              // rend le frame visible sur l'ï¿½cran
+            f1AR.setIgnoreRepaint(true);        // dï¿½sactive l'appel automatique de la fct paint(...) par repaint()
 
 
-            f1AR.createBufferStrategy(1);  // crée une stratégie de tampon d'image à 1 tampon vidéo
-            Thread.sleep(150);                       // au moins 150 ms !!!! pour laisser au système le temps de créer le buffer d'image
+            f1AR.createBufferStrategy(1);  // crï¿½e une stratï¿½gie de tampon d'image ï¿½ 1 tampon vidï¿½o
+            Thread.sleep(150);                       // au moins 150 ms !!!! pour laisser au systï¿½me le temps de crï¿½er le buffer d'image
 
-            stratégie = f1AR.getBufferStrategy();
-            graphics = stratégie.getDrawGraphics(); // le graphics sert à dessiner sur le tampon
+            strategie = f1AR.getBufferStrategy();
+            graphics = strategie.getDrawGraphics(); // le graphics sert ï¿½ dessiner sur le tampon
         }
 
         catch (InterruptedException e) {
-        		throw new Erreur("Impossible de créer la fenetre");
+        		throw new Erreur("Impossible de creer la fenetre");
         }
     }
     
     public void afficher() {
 
-        stratégie.show();       // place le tampon sur l'écran : la technique utilisée dépend du type de stratégie utilisé : blitting, pointeur vidéo, etc.
+        strategie.show();       // place le tampon sur l'ï¿½cran : la technique utilisï¿½e dï¿½pend du type de stratï¿½gie utilisï¿½ : blitting, pointeur vidï¿½o, etc.
         graphics.dispose();    
     }
 }
