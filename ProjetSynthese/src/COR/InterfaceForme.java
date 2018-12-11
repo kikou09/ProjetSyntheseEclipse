@@ -22,14 +22,21 @@ public abstract class InterfaceForme {
 	public abstract boolean saitInteragir(String msg);
 	public abstract void executerInteraction(String msg) throws Erreur, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException;
 	
-	public void interagir(String msg) throws Exception {
+	public void interagir(String msg) throws Erreur{
 		
 		if (saitInteragir(msg))
-			executerInteraction(msg);
+			
+			try {
+				executerInteraction(msg);
+			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Erreur lors du dessin de la forme");
+				e.printStackTrace();
+			}
 		else if (suivant != null)
 			suivant.interagir(msg);
 		else 
-			throw new Exception("pas d'interaction pour"+ msg);
+			throw new Erreur("pas d'interaction pour"+ msg);
 		
 	}
 	

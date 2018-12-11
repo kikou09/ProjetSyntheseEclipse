@@ -21,7 +21,7 @@ public class InterfaceTriangle extends InterfaceForme {
 	}
 
 	@Override
-	public void executerInteraction(String msg) throws Erreur, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public void executerInteraction(String msg) throws Erreur{
 		Scanner scanner = new Scanner(msg.substring(msg.indexOf(":") + 1, msg.length()));
 		
         int     x1 = scanner.nextInt(),

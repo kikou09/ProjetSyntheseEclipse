@@ -13,7 +13,7 @@ public class test {
 	public static void main(String[] args) throws Erreur {
 
 	        Fenetre fen = new Fenetre();
-	        int[] x={0,400};
+	        int[] x={0,500};
 			int[] y={300,0};
 			fen.graphics.drawPolygon(x,y,x.length);
 			fen.graphics.fillPolygon(x,y,x.length);
