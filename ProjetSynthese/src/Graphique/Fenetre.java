@@ -9,6 +9,9 @@ public class Fenetre {
   Frame f1AR;
   BufferStrategy strategie;
   public Graphics graphics;
+  static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+  public static int height = (int)dimension.getHeight();
+  public static int width  = (int)dimension.getWidth();
   
   static int numero=0;
 
@@ -16,7 +19,7 @@ public class Fenetre {
         try {
             f1AR = new Frame(" Frame numero " + (++numero));
 
-            f1AR.setBounds(30, 60, 400, 400);       // coordonn�es en dur : tr�s maladroit
+            f1AR.setBounds(0, 0, width, height);       // coordonn�es en dur : tr�s maladroit
             f1AR.setVisible(true);              // rend le frame visible sur l'�cran
             f1AR.setIgnoreRepaint(true);        // d�sactive l'appel automatique de la fct paint(...) par repaint()
 
