@@ -31,6 +31,8 @@ public class InterfaceCercle extends InterfaceForme {
 		 int  xCentre = (int) Double.parseDouble(tabMsg[0]),
                  yCentre = (int) Double.parseDouble(tabMsg[1]),
                  rayon   = (int) Double.parseDouble(tabMsg[2]);
+		 
+         Point centre= new Point(xCentre , yCentre);
 
 		String couleur = tabMsg[3];
 		 try {
@@ -41,11 +43,9 @@ public class InterfaceCercle extends InterfaceForme {
 				e.printStackTrace();
 			}
 	       
-		//Il faut créer une classe Point pour pouvoir le modifier 
-		Dessin.TransformationCoordonnees(xCentre, yCentre); 
-		System.out.println(xCentre);
-		fen.graphics.drawOval(xCentre, yCentre, rayon , rayon);
-		fen.graphics.fillOval(xCentre, yCentre, rayon, rayon);
+		Dessin.TransformationCoordonnees(centre); 
+		fen.graphics.drawOval(centre.getX(),centre.getY(), rayon*10 , rayon*10);
+		fen.graphics.fillOval(centre.getX(), centre.getY(), rayon*10, rayon*10);
 
         fen.afficher();  
 

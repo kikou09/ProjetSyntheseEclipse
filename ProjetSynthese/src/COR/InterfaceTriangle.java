@@ -2,6 +2,9 @@ package COR;
 
 import java.awt.*;
 import java.util.*;
+
+import Application.Dessin;
+
 import java.lang.reflect.*;
 
 import Graphique.*;
@@ -22,21 +25,24 @@ public class InterfaceTriangle extends InterfaceForme {
 
 	@Override
 	public void executerInteraction(String msg) throws Erreur{
-		Scanner scanner = new Scanner(msg.substring(msg.indexOf(":") + 1, msg.length()));
-		
-        int     x1 = scanner.nextInt(),
-        		x2 = scanner.nextInt(),
-        		x3 = scanner.nextInt(),
-                y1 = scanner.nextInt(),
-                y2 = scanner.nextInt(),
-                y3 = scanner.nextInt();
-        
-		int[] x={x1,x2,x3,x1};
-		int[] y={y1,y2,y3,y1};
-		
-		String couleur = scanner.nextLine();
-
+		//Scanner scanner = new Scanner(msg.substring(msg.indexOf(":") + 1, msg.length()));
+		String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
         Fenetre fen = new Fenetre();
+		
+        int     x1 = (int) Double.parseDouble(tabMsg[0]) ,
+                y1 =  (int) Double.parseDouble(tabMsg[1]),
+        		x2 = (int) Double.parseDouble(tabMsg[2]),
+                y2 =  (int) Double.parseDouble(tabMsg[3]),
+        		x3 =  (int) Double.parseDouble(tabMsg[4]),
+                y3 =  (int) Double.parseDouble(tabMsg[5]);
+        
+        Point p1=new Point(x1,y1);
+        Point p2=new Point(x2,y2);
+        Point p3=new Point(x3,y3);
+        
+        		
+		String couleur = tabMsg[6];
+
         try {
 			Color c = (Color) Color.class.getField(couleur.trim()).get(null);
 			fen.graphics.setColor(c);
@@ -45,6 +51,13 @@ public class InterfaceTriangle extends InterfaceForme {
 			e.printStackTrace();
 		}
         
+		Dessin.TransformationCoordonnees(p1); 
+		Dessin.TransformationCoordonnees(p2); 
+		Dessin.TransformationCoordonnees(p3); 
+
+		int[] x={p1.getX(),p2.getX(),p3.getX(),p1.getX()};
+		int[] y={p1.getY(),p2.getY(),p3.getY(),p1.getY()};
+		
 		fen.graphics.drawPolygon(x,y,x.length);
 		fen.graphics.fillPolygon(x,y,x.length);
 

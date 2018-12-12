@@ -12,11 +12,10 @@ public class Dessin {
 	
 	public static InterfaceForme ihm=null;
 	
-	public static void TransformationCoordonnees(int x , int y) {
+	public static void TransformationCoordonnees(Point p) {
 		
-		x=x*lambdaE1+a;
-		y=y*lambdaE2+b;
-		
+		p.setX(p.getX()*lambdaE1 +a );
+		p.setY(p.getY()*lambdaE2+b);		
 	}
 
 	public static void main(String[] args) {
