@@ -2,6 +2,9 @@ package COR;
 
 import Graphique.Erreur;
 
+/**
+ * Classe mère Interface pour la chaine de responsablitees
+ */
 public abstract class InterfaceForme {
 	
 	private InterfaceForme suivant=null;
@@ -18,18 +21,33 @@ public abstract class InterfaceForme {
 		return this.suivant;
 	}
 	
-	
+	/**
+	 * Fonction booleenne
+	 * @param msg forme à dessiner 
+	 * @return vrai si l'interface peut peut executer le dessin contenu dans msg
+	 */
 	public abstract boolean saitInteragir(String msg);
-	public abstract void executerInteraction(String msg) throws Erreur, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException;
 	
+	/**
+	 * Si saitInteragir renvoie vrai , execute le dessin
+	 * @param msg forme à dessiner
+	 * @throws Erreur en cas d'erreur de construction de la fenêtre ou en cas d'erreur de dessin
+	 */
+	public abstract void executerInteraction(String msg) throws Erreur;
+	
+	
+	/**
+	 * S'occupe de trouver quel maillon de la chaine peut executer le dessin 
+	 * @param msg forme à dessiner
+	 * @throws Erreur si aucun maillon ne peut dessiner la forme
+	 */
 	public void interagir(String msg) throws Erreur{
 		
 		if (saitInteragir(msg))
 			
 			try {
 				executerInteraction(msg);
-			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
+			} catch (Erreur e) {
 				System.err.println("Erreur lors du dessin de la forme");
 				e.printStackTrace();
 			}

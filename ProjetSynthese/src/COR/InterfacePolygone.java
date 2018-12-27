@@ -24,15 +24,16 @@ public class InterfacePolygone extends InterfaceForme {
 
 	@Override
 	public void executerInteraction(String msg) throws Erreur{
-		//Scanner scanner = new Scanner(msg.substring(msg.indexOf(":") + 1, msg.length()));
+		
 		String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
         Fenetre fen = new Fenetre();
 
 		int nbPoints =Integer.parseInt(tabMsg[0]);
-		int indice=1;
-	
+		int indice=1;	
 		int[] pointsX=new int[nbPoints+1];
 		int[] pointsY=new int[nbPoints+1];
+		
+		System.out.println(pointsX.length);
 		
         for(int i=0; i<nbPoints; i++) {
         	
@@ -44,19 +45,20 @@ public class InterfacePolygone extends InterfaceForme {
         	pointsY[i]=p.getY();
         	indice=indice+2;
         }
+        
 		String couleur = tabMsg[indice];
+		pointsX[pointsX.length-1]=pointsX[0];
+		pointsY[pointsY.length-1]=pointsY[0];
         
 		try {
 			Color c = (Color) Color.class.getField(couleur.trim()).get(null);
 			fen.graphics.setColor(c);
 		} 
 		catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			//System.out.println(e.getMessage());
 		}
-		
-		pointsX[nbPoints+1]=pointsX[0];
-		pointsY[nbPoints+1]=pointsY[0];
-		
+				
 		
 		fen.graphics.drawPolygon(pointsX,pointsY,pointsX.length);
 		fen.graphics.fillPolygon(pointsX,pointsY,pointsX.length);

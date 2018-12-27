@@ -3,19 +3,23 @@ package Serveur;
 import java.io.*;
 import java.net.Socket;
 
+import Application.Dessin;
+import Graphique.Erreur;
+
 /**
- * thread et socket cotï¿½ serveur :  traite les requï¿½tes d'un client
- * ici le serveur, pour chaque chaï¿½ne de caractï¿½res reï¿½ue d'un client, la transforme en majuscule puis la renvoie au client
+ * thread et socket coté serveur :  traite les requêtes d'un client
+ * Pour chaque chaine de caractères recue d'un client, la transforme en majuscule puis la renvoie au client
  * */
 public class ReceveurEnvoyeur extends Thread  {
 
-    Socket socket;  int noConnexion; // numï¿½ro du client distant
+    Socket socket;  int noConnexion; // numéro du client distant
 
-    BufferedReader fluxEntrant;	PrintStream fluxSortant;
+    BufferedReader fluxEntrant;	
+    PrintStream fluxSortant;
 
     /**
-     * Suppose socket dï¿½jï¿½ connectï¿½ vers le client nï¿½ noConnexion
-     * @param noConnexion : nï¿½ du client
+     * Suppose socket deja connecté vers le client num noConnexion
+     * @param noConnexion : num du client
      * */
     public ReceveurEnvoyeur(Socket socket, ThreadGroup groupe, int noConnexion) throws IOException {
 
@@ -23,39 +27,42 @@ public class ReceveurEnvoyeur extends Thread  {
         this.socket = socket;
         this.noConnexion = noConnexion;
 
+        /*fluxEntrant lit le texte provenant du client */
         fluxEntrant = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-        /* ï¿½ prï¿½sent fluxEntrant est prï¿½t pour lire du texte provenant du client */
 
+        /*fluxSortant renvoie des réponses textuelles au client */
         fluxSortant = new PrintStream(this.socket.getOutputStream());
-        /* ï¿½ prï¿½sent fluxSortant est prï¿½t pour renvoyer des rï¿½ponses textuelles au client */
     }
 
 
 
     public void run() {
 
-        String ligne;	String reponse;
+        String ligne;	
+        String reponse;
 
-        /*try  {
+        try  {
 
+        	Dessin d=new Dessin();
             ligne = fluxEntrant.readLine(); // saisit le texte du client
-            System.out.println(" le client nï¿½ "+this.noConnexion+" a envoyï¿½ : ");
-            System.out.println(ligne); // ï¿½cho de la question sur la console
-            System.out.println(ligne); // ï¿½cho de la question sur la console
+            System.out.println(" le client num "+this.noConnexion+" a envoyé : ");
+            System.out.println(ligne); // question sur la console
 
-            //Forme obj = new Croix(new Rond(null)).charger(ligne); //Interprï¿½tation du msg par ces doux experts
+            reponse = ligne.concat(" a ete cree.\n");
 
-            if(obj!=null) {
-                reponse = ligne.concat(" a ete cree.\n");
-                obj.afficher();
-            }
-            else reponse = "Impossible de crï¿½er l'objet";
-
+            //Faire un singleton dessin
+			try {
+				Dessin.instanceDessin().Dessiner(ligne);
+			} 
+			catch (Erreur e) {		
+				reponse="Impossible de dessiner l'objet";
+			}
+			 
             fluxSortant.println(reponse); // envoi de la reponse au client
         }
+        catch(IOException erreur) { 
+        	System.err.println(" Impossible de lire sur le socket provenant du client");
+        }
 
-        catch(IOException erreur) { System.err.println(" on ne peut pas lire sur le socket provenant du client");}
-
-    }// run*/
-} // ReceveurEnvoyeur
-}
+    }
+} 

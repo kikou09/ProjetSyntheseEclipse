@@ -39,9 +39,8 @@ public class Serveur {
 
             /* à présent création d'un thread pour gérer les transactions avec le nouvau client en parallèle
              * avec les autres clients déjà connectés et avec l'attente perpétuelle du servur*/
-
             nouveauClientThread = new ReceveurEnvoyeur(nouveauClientSocket, groupe, noConnexion);
             nouveauClientThread.start();
         }
-    } // main
+    }
 }
