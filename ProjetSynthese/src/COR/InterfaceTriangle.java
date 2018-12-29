@@ -24,10 +24,9 @@ public class InterfaceTriangle extends InterfaceForme {
 	}
 
 	@Override
-	public void executerInteraction(String msg) throws Erreur{
+	public void executerInteraction(String msg, Fenetre fen){
 		
 		String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
-        Fenetre fen = new Fenetre();
 		
         int     x1 = (int) Double.parseDouble(tabMsg[0]) ,
                 y1 =  (int) Double.parseDouble(tabMsg[1]),
@@ -42,7 +41,6 @@ public class InterfaceTriangle extends InterfaceForme {
         
         		
 		String couleur = tabMsg[6];
-
         try {
 			Color c = (Color) Color.class.getField(couleur.trim()).get(null);
 			fen.graphics.setColor(c);
@@ -58,10 +56,10 @@ public class InterfaceTriangle extends InterfaceForme {
 		int[] x={p1.getX(),p2.getX(),p3.getX(),p1.getX()};
 		int[] y={p1.getY(),p2.getY(),p3.getY(),p1.getY()};
 		
+		System.out.println(p1.getX());
 		fen.graphics.drawPolygon(x,y,x.length);
 		fen.graphics.fillPolygon(x,y,x.length);
 
-        fen.afficher();
     }
 
 

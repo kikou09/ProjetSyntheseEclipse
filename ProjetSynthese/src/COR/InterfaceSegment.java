@@ -26,10 +26,9 @@ public class InterfaceSegment extends InterfaceForme {
 	}
 
 	@Override
-	public void executerInteraction(String msg) throws Erreur {
+	public void executerInteraction(String msg , Fenetre fen) {
 		
 	String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
-    Fenetre fen = new Fenetre();
 	
     int     x1 = (int) Double.parseDouble(tabMsg[0]) ,
             y1 =  (int) Double.parseDouble(tabMsg[1]),
@@ -58,7 +57,6 @@ public class InterfaceSegment extends InterfaceForme {
 	
 	fen.graphics.drawLine(p1.getX(),p1.getY(), p2.getX(), p2.getY());
 
-    fen.afficher();
 	}
 
 }

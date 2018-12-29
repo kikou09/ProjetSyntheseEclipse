@@ -19,16 +19,16 @@ public class Fenetre {
         try {
             f1AR = new Frame(" Frame numero " + (++numero));
 
-            f1AR.setBounds(0, 0, width, height);       // coordonnï¿½es en dur : trï¿½s maladroit
-            f1AR.setVisible(true);              // rend le frame visible sur l'ï¿½cran
-            f1AR.setIgnoreRepaint(true);        // dï¿½sactive l'appel automatique de la fct paint(...) par repaint()
+            f1AR.setBounds(0, 0, width, height);    
+            f1AR.setVisible(true);              // rend le frame visible sur l'écran
+            f1AR.setIgnoreRepaint(true);        // désactive l'appel automatique de la fct paint(...) par repaint()
 
 
-            f1AR.createBufferStrategy(1);  // crï¿½e une stratï¿½gie de tampon d'image ï¿½ 1 tampon vidï¿½o
-            Thread.sleep(150);                       // au moins 150 ms !!!! pour laisser au systï¿½me le temps de crï¿½er le buffer d'image
+            f1AR.createBufferStrategy(1);  // créee une stratégie de tampon d'image sur un tampon vide
+            Thread.sleep(150);                       // Pour laisser au système le temps de créeer le buffer d'image
 
             strategie = f1AR.getBufferStrategy();
-            graphics = strategie.getDrawGraphics(); // le graphics sert ï¿½ dessiner sur le tampon
+            graphics = strategie.getDrawGraphics(); // le graphics sert à dessiner sur le tampon
         }
 
         catch (InterruptedException e) {
@@ -38,8 +38,9 @@ public class Fenetre {
     
     public void afficher() {
 
-        strategie.show();       // place le tampon sur l'ï¿½cran : la technique utilisï¿½e dï¿½pend du type de stratï¿½gie utilisï¿½ : blitting, pointeur vidï¿½o, etc.
+        strategie.show();       // place le tampon sur l'écran
         graphics.dispose();    
+        graphics = strategie.getDrawGraphics();
     }
 }
 

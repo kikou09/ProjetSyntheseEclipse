@@ -1,6 +1,7 @@
 package COR;
 
 import Graphique.Erreur;
+import Graphique.Fenetre;
 
 /**
  * Classe mère Interface pour la chaine de responsablitees
@@ -33,7 +34,7 @@ public abstract class InterfaceForme {
 	 * @param msg forme à dessiner
 	 * @throws Erreur en cas d'erreur de construction de la fenêtre ou en cas d'erreur de dessin
 	 */
-	public abstract void executerInteraction(String msg) throws Erreur;
+	public abstract void executerInteraction(String msg , Fenetre fen) throws Erreur;
 	
 	
 	/**
@@ -41,18 +42,18 @@ public abstract class InterfaceForme {
 	 * @param msg forme à dessiner
 	 * @throws Erreur si aucun maillon ne peut dessiner la forme
 	 */
-	public void interagir(String msg) throws Erreur{
+	public void interagir(String msg , Fenetre fen) throws Erreur{
 		
 		if (saitInteragir(msg))
 			
 			try {
-				executerInteraction(msg);
+				executerInteraction(msg,fen);
 			} catch (Erreur e) {
 				System.err.println("Erreur lors du dessin de la forme");
 				e.printStackTrace();
 			}
 		else if (suivant != null)
-			suivant.interagir(msg);
+			suivant.interagir(msg,fen);
 		else 
 			throw new Erreur("pas d'interaction pour"+ msg);
 		

@@ -1,5 +1,7 @@
 package Application;
 
+import java.util.ArrayList;
+
 /**
  * @authors SCHUSTER Jorane NUSS Alexis 
  * @version 1.10
@@ -7,6 +9,7 @@ package Application;
 
 import COR.*;
 import Graphique.Erreur;
+import Graphique.Fenetre;
 
 /**
  * Classe qui s'occupe d'initialiser la chaine de responsabilitées et de lancer le dessin de la forme
@@ -22,13 +25,22 @@ public class Dessin {
 	public static int a=40;
 	public static int b=30;
 	
-	public static InterfaceForme ihm=null;
+	public static InterfaceForme ihm=initialiserInterface();
+	private ArrayList<String>formes;
+	private Fenetre fen;
 	
+	
+	private Dessin() throws Erreur {
+		
+		formes=new ArrayList<String>();
+		fen=new Fenetre();
+	}
 	
 	/**
 	 * @return le dessin si il existe et le créer sinon 
+	 * @throws Erreur 
 	 */
-	public static Dessin instanceDessin() {
+	public static Dessin instanceDessin() throws Erreur {
 		if(dessin==null)
 			dessin=new Dessin();
 		return dessin;
@@ -50,18 +62,25 @@ public class Dessin {
 	 * @param forme forme à dessiner
 	 * @throws Erreur en cas de problème lors du dessin
 	 */
-	public static void Dessiner(String forme) throws Erreur {
+	public void Dessiner(String forme) throws Erreur {
 		
-		ihm=initialiserInterface();
-		
+		formes.add(forme);
+
 		//String msg="Segment :0 1 12 0 red";
 		
 		if(ihm==null){
 			System.out.println("L'application ne fait rien ");
 			System.exit(0);
 		}
+		
+		ihm.interagir(forme,fen);
+		for(String f:formes) {
 			
-		ihm.interagir(forme);
+			ihm.interagir(f,fen);
+		}
+		
+        fen.afficher();
+		
 	}
 	
 	/**

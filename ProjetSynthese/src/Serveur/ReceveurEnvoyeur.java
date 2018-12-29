@@ -26,6 +26,7 @@ public class ReceveurEnvoyeur extends Thread  {
         super(groupe,"ReceveurEnvoyeur");
         this.socket = socket;
         this.noConnexion = noConnexion;
+        System.out.println(fluxEntrant);
 
         /*fluxEntrant lit le texte provenant du client */
         fluxEntrant = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
@@ -42,27 +43,31 @@ public class ReceveurEnvoyeur extends Thread  {
         String reponse;
 
         try  {
-
-        	Dessin d=new Dessin();
-            ligne = fluxEntrant.readLine(); // saisit le texte du client
-            System.out.println(" le client num "+this.noConnexion+" a envoyé : ");
-            System.out.println(ligne); // question sur la console
-
-            reponse = ligne.concat(" a ete cree.\n");
-
-            //Faire un singleton dessin
-			try {
-				Dessin.instanceDessin().Dessiner(ligne);
-			} 
-			catch (Erreur e) {		
-				reponse="Impossible de dessiner l'objet";
-			}
-			 
-            fluxSortant.println(reponse); // envoi de la reponse au client
-        }
+        	while(! isInterrupted()) {
+	            ligne = fluxEntrant.readLine(); // saisit le texte du client
+	            System.out.println(" le client num "+this.noConnexion+" a envoyé : ");
+	            System.out.println(ligne); // question sur la console
+	
+	            reponse = ligne.concat("a ete cree.\n");
+	
+	            //singleton dessin
+				try {
+					
+					Dessin.instanceDessin().Dessiner(ligne);
+				} 
+				catch (Erreur e) {		
+					reponse="Impossible de dessiner l'objet";
+				}
+				System.out.println(reponse);
+	            fluxSortant.println(reponse); // envoi de la reponse au client
+	            //sleep(5);
+	        }
+         }
         catch(IOException erreur) { 
         	System.err.println(" Impossible de lire sur le socket provenant du client");
-        }
+        } /*catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
 
     }
 } 

@@ -23,10 +23,9 @@ public class InterfacePolygone extends InterfaceForme {
 	}
 
 	@Override
-	public void executerInteraction(String msg) throws Erreur{
+	public void executerInteraction(String msg , Fenetre fen){
 		
 		String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
-        Fenetre fen = new Fenetre();
 
 		int nbPoints =Integer.parseInt(tabMsg[0]);
 		int indice=1;	
@@ -55,15 +54,13 @@ public class InterfacePolygone extends InterfaceForme {
 			fen.graphics.setColor(c);
 		} 
 		catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-			//e.printStackTrace();
-			//System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 				
 		
 		fen.graphics.drawPolygon(pointsX,pointsY,pointsX.length);
 		fen.graphics.fillPolygon(pointsX,pointsY,pointsX.length);
 
-        fen.afficher();
 		
 	}
 
