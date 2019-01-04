@@ -7,8 +7,10 @@ import Application.Dessin;
 import Graphique.Erreur;
 
 /**
+ * Classe ReceveurEnvoyeur 
  * thread et socket coté serveur :  traite les requêtes d'un client
- * Pour chaque chaine de caractères recue d'un client, la transforme en majuscule puis la renvoie au client
+ * Recoit une chaine de caractères contenant la forme à dessiner avec ses coordonnees , la dessine
+ * Et renvoie une confirmation au client
  * */
 public class ReceveurEnvoyeur extends Thread  {
 
@@ -18,7 +20,7 @@ public class ReceveurEnvoyeur extends Thread  {
     PrintStream fluxSortant;
 
     /**
-     * Suppose socket deja connecté vers le client num noConnexion
+     * Suppose que le socket est deja connecté vers le client num noConnexion
      * @param noConnexion : num du client
      * */
     public ReceveurEnvoyeur(Socket socket, ThreadGroup groupe, int noConnexion) throws IOException {
@@ -36,17 +38,22 @@ public class ReceveurEnvoyeur extends Thread  {
     }
 
 
-
+    /**
+     * Lit la requête du client et lance le dessin traité par la chaine de 
+     * responsabilitées 
+     * @see Dessin
+     */
     public void run() {
 
         String ligne;	
         String reponse;
 
         try  {
+        	
         	while(! isInterrupted()) {
-	            ligne = fluxEntrant.readLine(); // saisit le texte du client
+	            ligne = fluxEntrant.readLine(); // Le texte du client
 	            System.out.println(" le client num "+this.noConnexion+" a envoyé : ");
-	            System.out.println(ligne); // question sur la console
+	            System.out.println(ligne); // Requete sur la console
 	
 	            reponse = ligne.concat("a ete cree.\n");
 	

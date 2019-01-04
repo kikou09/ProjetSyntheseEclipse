@@ -1,13 +1,13 @@
 package COR;
 
 import java.awt.*;
-import java.lang.reflect.*;
-import java.util.*;
-
 import Application.Dessin;
 import Graphique.Erreur;
 import Graphique.Fenetre;
 
+/**
+ * Maillon de la chaine qui s'occupe du dessin du polygone
+ */
 public class InterfacePolygone extends InterfaceForme {
 
 	public InterfacePolygone(InterfaceForme suivant) {
@@ -23,7 +23,7 @@ public class InterfacePolygone extends InterfaceForme {
 	}
 
 	@Override
-	public void executerInteraction(String msg , Fenetre fen){
+	public void executerInteraction(String msg , Fenetre fen) throws Erreur{
 		
 		String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
 
@@ -39,7 +39,7 @@ public class InterfacePolygone extends InterfaceForme {
         	int x=(int) Double.parseDouble(tabMsg[indice]);
 			int y=(int) Double.parseDouble(tabMsg[indice+1]);
         	Point p=new Point(x,y);
-    		Dessin.TransformationCoordonnees(p); 
+    		Dessin.instanceDessin().TransformationCoordonnees(p); 
         	pointsX[i]=p.getX();
         	pointsY[i]=p.getY();
         	indice=indice+2;

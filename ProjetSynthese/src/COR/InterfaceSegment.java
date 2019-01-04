@@ -7,9 +7,7 @@ import Graphique.Erreur;
 import Graphique.Fenetre;
 
 /**
- * 
- * Interface pour le Segment 
- *
+ * Maillon de la chaine qui s'occupe du dessin du segment
  */
 public class InterfaceSegment extends InterfaceForme {
 
@@ -26,7 +24,7 @@ public class InterfaceSegment extends InterfaceForme {
 	}
 
 	@Override
-	public void executerInteraction(String msg , Fenetre fen) {
+	public void executerInteraction(String msg , Fenetre fen) throws Erreur {
 		
 	String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
 	
@@ -49,8 +47,8 @@ public class InterfaceSegment extends InterfaceForme {
 		e.printStackTrace();
 	}
     
-	Dessin.TransformationCoordonnees(p1); 
-	Dessin.TransformationCoordonnees(p2); 
+	Dessin.instanceDessin().TransformationCoordonnees(p1); 
+	Dessin.instanceDessin().TransformationCoordonnees(p2); 
 
 	int[] x={p1.getX(),p2.getX(),p1.getX()};
 	int[] y={p1.getY(),p2.getY(),p1.getY()};

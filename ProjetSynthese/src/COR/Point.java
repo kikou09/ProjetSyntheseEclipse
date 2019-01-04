@@ -1,5 +1,9 @@
 package COR;
 
+/**
+ * Classe point , utile pour la transformation des coordonnees en monde-ecran
+ * @author Jorane
+ */
 public class Point {
 	
 	private int x,y;

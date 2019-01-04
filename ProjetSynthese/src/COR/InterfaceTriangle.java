@@ -1,14 +1,12 @@
 package COR;
 
 import java.awt.*;
-import java.util.*;
-
 import Application.Dessin;
-
-import java.lang.reflect.*;
-
 import Graphique.*;
 
+/**
+ * Maillon de la chaine qui s'occupe du dessin du triangle
+ */
 public class InterfaceTriangle extends InterfaceForme {
 
 	public InterfaceTriangle(InterfaceForme suivant) {
@@ -24,7 +22,7 @@ public class InterfaceTriangle extends InterfaceForme {
 	}
 
 	@Override
-	public void executerInteraction(String msg, Fenetre fen){
+	public void executerInteraction(String msg, Fenetre fen) throws Erreur{
 		
 		String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
 		
@@ -49,9 +47,9 @@ public class InterfaceTriangle extends InterfaceForme {
 			e.printStackTrace();
 		}
         
-		Dessin.TransformationCoordonnees(p1); 
-		Dessin.TransformationCoordonnees(p2); 
-		Dessin.TransformationCoordonnees(p3); 
+		Dessin.instanceDessin().TransformationCoordonnees(p1); 
+		Dessin.instanceDessin().TransformationCoordonnees(p2); 
+		Dessin.instanceDessin().TransformationCoordonnees(p3); 
 
 		int[] x={p1.getX(),p2.getX(),p3.getX(),p1.getX()};
 		int[] y={p1.getY(),p2.getY(),p3.getY(),p1.getY()};

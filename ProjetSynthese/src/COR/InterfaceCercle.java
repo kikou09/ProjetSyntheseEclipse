@@ -7,6 +7,9 @@ import Application.Dessin;
 import Graphique.Erreur;
 import Graphique.Fenetre;
 
+/**
+ * Maillon de la chaine qui s'occupe du dessin du cercle
+ */
 public class InterfaceCercle extends InterfaceForme {
 
 	public InterfaceCercle(InterfaceForme suivant) {
@@ -40,7 +43,8 @@ public class InterfaceCercle extends InterfaceForme {
 				e.printStackTrace();
 			}
 	       
-		Dessin.TransformationCoordonnees(centre); 
+		Dessin.instanceDessin().TransformationCoordonnees(centre);
+		//Dessin.TransformationCoordonnees(centre); 
 		fen.graphics.drawOval(centre.getX(),centre.getY(), rayon*10 , rayon*10);
 		fen.graphics.fillOval(centre.getX(), centre.getY(), rayon*10, rayon*10);
 

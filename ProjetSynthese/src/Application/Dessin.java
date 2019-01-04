@@ -25,7 +25,7 @@ public class Dessin {
 	public static int a=60;
 	public static int b=25;
 	
-	public static InterfaceForme ihm=initialiserInterface();
+	private InterfaceForme ihm=initialiserInterface();
 	private ArrayList<String>formes;
 	private Fenetre fen;
 	
@@ -51,7 +51,7 @@ public class Dessin {
 	 * Transformation Monde-Ecran
 	 * @param p = point à transformer
 	 */
-	public static void TransformationCoordonnees(Point p) {
+	public void TransformationCoordonnees(Point p) {
 		
 		p.setX(p.getX()*lambdaE1 +a );
 		p.setY(p.getY()*lambdaE2+b);		
@@ -87,7 +87,7 @@ public class Dessin {
 	 * Creer l'interface de la chaine de responsabilitées
 	 * @return InterfaceForme 
 	 */
-	public static InterfaceForme initialiserInterface() {
+	public InterfaceForme initialiserInterface() {
 		
 		InterfaceForme monInterface=null;
 		monInterface=new InterfaceCercle(monInterface);
