@@ -67,14 +67,14 @@ public class ReceveurEnvoyeur extends Thread  {
 				}
 				System.out.println(reponse);
 	            fluxSortant.println(reponse); // envoi de la reponse au client
-	            //sleep(5);
+	            sleep(5);
 	        }
          }
         catch(IOException erreur) { 
         	System.err.println(" Impossible de lire sur le socket provenant du client");
-        } /*catch (InterruptedException e) {
+        } catch (InterruptedException e) {
 			e.printStackTrace();
-		}*/
+		}
 
     }
 } 

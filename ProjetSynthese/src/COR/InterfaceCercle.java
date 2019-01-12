@@ -1,8 +1,6 @@
 package COR;
 
 import java.awt.Color;
-import java.util.Scanner;
-
 import Application.Dessin;
 import Graphique.Erreur;
 import Graphique.Fenetre;

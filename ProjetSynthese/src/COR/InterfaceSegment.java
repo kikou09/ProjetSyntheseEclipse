@@ -1,7 +1,6 @@
 package COR;
 
 import java.awt.Color;
-
 import Application.Dessin;
 import Graphique.Erreur;
 import Graphique.Fenetre;
@@ -49,9 +48,6 @@ public class InterfaceSegment extends InterfaceForme {
     
 	Dessin.instanceDessin().TransformationCoordonnees(p1); 
 	Dessin.instanceDessin().TransformationCoordonnees(p2); 
-
-	int[] x={p1.getX(),p2.getX(),p1.getX()};
-	int[] y={p1.getY(),p2.getY(),p1.getY()};
 	
 	fen.graphics.drawLine(p1.getX(),p1.getY(), p2.getX(), p2.getY());
 
