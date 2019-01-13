@@ -32,7 +32,6 @@ public class Dessin {
 	
 	private Dessin() throws Erreur {
 		
-		formes=new ArrayList<String>();
 		fen=new Fenetre();
 	}
 	
@@ -63,21 +62,17 @@ public class Dessin {
 	 * @throws Erreur en cas de problème lors du dessin
 	 */
 	public void Dessiner(String forme) throws Erreur {
-		
-		formes.add(forme);
-
-		//String msg="Segment :0 1 12 0 red";
-		
+				
 		if(ihm==null){
 			System.out.println("L'application ne fait rien ");
 			System.exit(0);
 		}
 		
 		ihm.interagir(forme,fen);
-		for(String f:formes) {
+		/*for(String f:formes) {
 			
 			ihm.interagir(f,fen);
-		}
+		}*/
 		
         fen.afficher();
 		
