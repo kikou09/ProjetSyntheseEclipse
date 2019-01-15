@@ -25,6 +25,9 @@ public class InterfaceCercle extends InterfaceForme {
 	@Override
 	public void executerInteraction(String msg , Fenetre fen) throws Erreur {
 		
+		
+		Fenetre fen2=new Fenetre();
+		
          String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
 		 int  xCentre = (int) Double.parseDouble(tabMsg[0]),
                  yCentre = (int) Double.parseDouble(tabMsg[1]),
@@ -35,7 +38,7 @@ public class InterfaceCercle extends InterfaceForme {
 		String couleur = tabMsg[3];
 		 try {
 				Color c = (Color) Color.class.getField(couleur.trim()).get(null);
-				fen.graphics.setColor(c);
+				fen2.graphics.setColor(c);
 			} 
 			catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
@@ -43,8 +46,10 @@ public class InterfaceCercle extends InterfaceForme {
 	       
 		Dessin.instanceDessin().TransformationCoordonnees(centre);
 		//Dessin.TransformationCoordonnees(centre); 
-		fen.graphics.drawOval(centre.getX(),centre.getY(), rayon*10 , rayon*10);
-		fen.graphics.fillOval(centre.getX(), centre.getY(), rayon*10, rayon*10);
+		fen2.graphics.drawOval(centre.getX(),centre.getY(), rayon*10 , rayon*10);
+		fen2.graphics.fillOval(centre.getX(), centre.getY(), rayon*10, rayon*10);
+		
+		fen2.afficher();
 
 	}
 

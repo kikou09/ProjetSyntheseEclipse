@@ -20,13 +20,12 @@ public class Dessin {
 	
 	private static Dessin dessin=null;
 
-	public static int lambdaE1=30;
+	/*public static int lambdaE1=30;
 	public static int lambdaE2=30;
 	public static int a=60;
-	public static int b=25;
+	public static int b=25;*/
 	
-	private InterfaceForme ihm=initialiserInterface();
-	private ArrayList<String>formes;
+	public static InterfaceForme ihm=initialiserInterface();
 	private Fenetre fen;
 	
 	
@@ -52,8 +51,10 @@ public class Dessin {
 	 */
 	public void TransformationCoordonnees(Point p) {
 		
-		p.setX(p.getX()*lambdaE1 +a );
-		p.setY(p.getY()*lambdaE2+b);		
+		p.setX(p.getX()+(Fenetre.width/2));
+		p.setY(p.getY()+(Fenetre.height/2));
+		/*p.setX(p.getX()*lambdaE1 +a );
+		p.setY(p.getY()*lambdaE2+b);	*/	
 	}
 
 	/**
@@ -62,7 +63,8 @@ public class Dessin {
 	 * @throws Erreur en cas de problème lors du dessin
 	 */
 	public void Dessiner(String forme) throws Erreur {
-				
+		
+		System.out.println(forme);
 		if(ihm==null){
 			System.out.println("L'application ne fait rien ");
 			System.exit(0);
@@ -74,7 +76,7 @@ public class Dessin {
 			ihm.interagir(f,fen);
 		}*/
 		
-        fen.afficher();
+        //fen.afficher();
 		
 	}
 	
@@ -82,14 +84,14 @@ public class Dessin {
 	 * Creer l'interface de la chaine de responsabilitées
 	 * @return InterfaceForme 
 	 */
-	public InterfaceForme initialiserInterface() {
+	public static InterfaceForme initialiserInterface() {
 		
 		InterfaceForme monInterface=null;
 		monInterface=new InterfaceCercle(monInterface);
 		monInterface=new InterfacePolygone(monInterface);
 		monInterface= new InterfaceTriangle(monInterface);
 		monInterface=new InterfaceSegment(monInterface);
-		
+		monInterface=new InterfaceFormeComposee(monInterface);
 		return monInterface;
 	}
 
