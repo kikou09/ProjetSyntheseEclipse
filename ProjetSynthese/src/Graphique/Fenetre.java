@@ -5,6 +5,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 
+/**
+ * Classe Fenetre
+ * Gestion de la fenetre pour le dessin 
+ */
 public class Fenetre {
 	
 
@@ -47,7 +51,6 @@ public class Fenetre {
 
         strategie.show();       // place le tampon sur l'écran
         graphics.dispose();    
-       // graphics = strategie.getDrawGraphics();
     }
 }
 

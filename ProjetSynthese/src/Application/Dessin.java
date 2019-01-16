@@ -1,6 +1,5 @@
 package Application;
 
-import java.util.ArrayList;
 
 /**
  * @authors SCHUSTER Jorane NUSS Alexis 
@@ -14,7 +13,6 @@ import Graphique.Fenetre;
 /**
  * Classe qui s'occupe d'initialiser la chaine de responsabilitées et de lancer le dessin de la forme
  * @author Jorane SCHUSTER , Alexis NUSS
- * static int lambdaE1 , lambdaE2 , a ,b = constante utilisé pour la transformation
  */
 public class Dessin {
 	
@@ -50,8 +48,6 @@ public class Dessin {
 		
 		p.setX(p.getX()+(Fenetre.width/2));
 		p.setY(p.getY()+(Fenetre.height/2));
-		/*p.setX(p.getX()*lambdaE1 +a );
-		p.setY(p.getY()*lambdaE2+b);	*/	
 	}
 
 	/**
@@ -59,20 +55,18 @@ public class Dessin {
 	 * @param forme forme à dessiner
 	 * @throws Erreur en cas de problème lors du dessin
 	 */
-	public void Dessiner(String forme, Fenetre fen) throws Erreur {
+	public void Dessiner(String forme) throws Erreur {
 		
 		if(ihm==null){
 			System.out.println("L'application ne fait rien ");
 			System.exit(0);
 		}
 		
-		ihm.interagir(forme,fen);
-		/*for(String f:formes) {
-			
-			ihm.interagir(f,fen);
-		}*/
+		Fenetre fen=new Fenetre();
 		
-        //fen.afficher();
+		ihm.interagir(forme,fen);
+		
+        fen.afficher();
 		
 	}
 	

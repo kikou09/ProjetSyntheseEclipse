@@ -6,6 +6,9 @@ import Application.Dessin;
 import Graphique.Erreur;
 import Graphique.Fenetre;
 
+/**
+ * Maillon de la chaine qui s'occupe du dessin du polygone
+ */
 public class InterfaceFormeComposee extends InterfaceForme {
 
 	public InterfaceFormeComposee(InterfaceForme suivant) {

@@ -5,7 +5,6 @@ import java.net.Socket;
 
 import Application.Dessin;
 import Graphique.Erreur;
-import Graphique.Fenetre;
 
 /**
  * Classe ReceveurEnvoyeur 
@@ -48,7 +47,6 @@ public class ReceveurEnvoyeur extends Thread  {
 
         String ligne;	
         String reponse;
-        Fenetre fen;
 
         try  {
         	
@@ -63,9 +61,7 @@ public class ReceveurEnvoyeur extends Thread  {
 	            //singleton dessin
 				try {
 					
-	        		fen=new Fenetre();
-					Dessin.instanceDessin().Dessiner(ligne, fen);
-		            fen.afficher();
+					Dessin.instanceDessin().Dessiner(ligne);
 				} 
 				catch (Erreur e) {		
 					reponse="Impossible de dessiner l'objet";
