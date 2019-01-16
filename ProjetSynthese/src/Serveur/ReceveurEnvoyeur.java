@@ -5,6 +5,7 @@ import java.net.Socket;
 
 import Application.Dessin;
 import Graphique.Erreur;
+import Graphique.Fenetre;
 
 /**
  * Classe ReceveurEnvoyeur 
@@ -47,10 +48,12 @@ public class ReceveurEnvoyeur extends Thread  {
 
         String ligne;	
         String reponse;
+        Fenetre fen;
 
         try  {
         	
         	while(! isInterrupted()) {
+        		
 	            ligne = fluxEntrant.readLine(); // Le texte du client
 	            System.out.println(" le client num "+this.noConnexion+" a envoyé : ");
 	            System.out.println(ligne); // Requete sur la console
@@ -60,11 +63,14 @@ public class ReceveurEnvoyeur extends Thread  {
 	            //singleton dessin
 				try {
 					
-					Dessin.instanceDessin().Dessiner(ligne);
+	        		fen=new Fenetre();
+					Dessin.instanceDessin().Dessiner(ligne, fen);
+		            fen.afficher();
 				} 
 				catch (Erreur e) {		
 					reponse="Impossible de dessiner l'objet";
 				}
+				
 				System.out.println(reponse);
 	            fluxSortant.println(reponse); // envoi de la reponse au client
 	            sleep(5);

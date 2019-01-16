@@ -25,13 +25,10 @@ public class Dessin {
 	public static int a=60;
 	public static int b=25;*/
 	
-	public static InterfaceForme ihm=initialiserInterface();
-	private Fenetre fen;
-	
+	public static InterfaceForme ihm=initialiserInterface();	
 	
 	private Dessin() throws Erreur {
 		
-		fen=new Fenetre();
 	}
 	
 	/**
@@ -62,9 +59,8 @@ public class Dessin {
 	 * @param forme forme à dessiner
 	 * @throws Erreur en cas de problème lors du dessin
 	 */
-	public void Dessiner(String forme) throws Erreur {
+	public void Dessiner(String forme, Fenetre fen) throws Erreur {
 		
-		System.out.println(forme);
 		if(ihm==null){
 			System.out.println("L'application ne fait rien ");
 			System.exit(0);

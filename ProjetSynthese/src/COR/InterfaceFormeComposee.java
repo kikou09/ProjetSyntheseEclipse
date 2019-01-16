@@ -1,5 +1,7 @@
 package COR;
 
+import java.awt.Color;
+
 import Application.Dessin;
 import Graphique.Erreur;
 import Graphique.Fenetre;
@@ -22,19 +24,23 @@ public class InterfaceFormeComposee extends InterfaceForme {
 	public void executerInteraction(String msg, Fenetre fen) throws Erreur {
 		
 		int i;
-		System.out.println("ok");
-		Fenetre fen2=new Fenetre();
-		int pos= msg.indexOf("]");
-		String tabMsg[]=msg.substring(msg.indexOf("[")+1,msg.length()-(pos+1)).split(";");
+		int pos= msg.indexOf(";");
+		String tabMsg[]=msg.substring(pos+1).split(";");
+		String couleur = tabMsg[tabMsg.length-1];
 		
-		for(i=0;i<tabMsg.length;i++) {
-			
-			System.out.println(tabMsg[i]);
-			//Dessin.ihm.interagir(tabMsg[i],fen2);
+		try {
+			Color c = (Color) Color.class.getField(couleur.trim()).get(null);
+			fen.graphics.setColor(c);
+		} 
+		catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
 		}
+		for(i=0;i<tabMsg.length-1;i++) {
+			
+			Dessin.ihm.interagir(tabMsg[i],fen);
+		}
+		
 	
-		//fen2.afficher();
-
 	}
 
 }

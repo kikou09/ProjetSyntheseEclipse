@@ -24,9 +24,7 @@ public class InterfacePolygone extends InterfaceForme {
 
 	@Override
 	public void executerInteraction(String msg , Fenetre fen) throws Erreur{
-		
-		Fenetre fen2=new Fenetre();
-		
+				
 		String tabMsg[]=msg.substring(msg.indexOf(":")+1).split(" ");
 
 		int nbPoints =Integer.parseInt(tabMsg[0]);
@@ -53,17 +51,16 @@ public class InterfacePolygone extends InterfaceForme {
         
 		try {
 			Color c = (Color) Color.class.getField(couleur.trim()).get(null);
-			fen2.graphics.setColor(c);
+			fen.graphics.setColor(c);
 		} 
 		catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 				
 		
-		fen2.graphics.drawPolygon(pointsX,pointsY,pointsX.length);
-		fen2.graphics.fillPolygon(pointsX,pointsY,pointsX.length);
+		//fen.graphics.drawPolygon(pointsX,pointsY,pointsX.length);
+		fen.graphics.fillPolygon(pointsX,pointsY,pointsX.length);
 		
-		fen2.afficher();
 
 		
 	}
