@@ -17,7 +17,7 @@ public class InterfaceFormeComposee extends InterfaceForme {
 
 	@Override
 	public boolean saitInteragir(String msg) {
-		if (msg.contains("Forme Composee")) {
+		if (msg.contains("Forme Composee;")) {
         	return true;
         }
         return false;
@@ -38,8 +38,7 @@ public class InterfaceFormeComposee extends InterfaceForme {
 		catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		for(i=0;i<tabMsg.length-1;i++) {
-			
+		for(i=1;i<tabMsg.length-1;i++) {
 			Dessin.ihm.interagir(tabMsg[i],fen);
 		}
 		

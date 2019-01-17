@@ -55,7 +55,7 @@ public class InterfaceTriangle extends InterfaceForme {
 		int[] y={p1.getY(),p2.getY(),p3.getY(),p1.getY()};
 		
 		System.out.println(p1.getX());
-		fen.graphics.drawPolygon(x,y,x.length);
+		//fen.graphics.drawPolygon(x,y,x.length);
 		fen.graphics.fillPolygon(x,y,x.length);
 		
     }
