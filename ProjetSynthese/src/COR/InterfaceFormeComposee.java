@@ -29,7 +29,7 @@ public class InterfaceFormeComposee extends InterfaceForme {
 		int i;
 		int pos= msg.indexOf(";");
 		String tabMsg[]=msg.substring(pos+1).split(";");
-		String couleur = tabMsg[tabMsg.length-1];
+		String couleur = tabMsg[0];
 		
 		try {
 			Color c = (Color) Color.class.getField(couleur.trim()).get(null);
