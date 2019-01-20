@@ -41,7 +41,6 @@ public class InterfaceFormeComposee extends InterfaceForme {
 		}
 		
 		//Traitement special si forme composee imbriquees
-		
 		while(i<tabMsg.length-1) {
 			if(tabMsg[i].equals("Forme Composee")) {
 				j=i;

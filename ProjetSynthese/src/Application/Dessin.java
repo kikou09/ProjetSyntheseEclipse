@@ -17,11 +17,6 @@ import Graphique.Fenetre;
 public class Dessin {
 	
 	private static Dessin dessin=null;
-
-	/*public static int lambdaE1=30;
-	public static int lambdaE2=30;
-	public static int a=60;
-	public static int b=25;*/
 	
 	public static InterfaceForme ihm=initialiserInterface();	
 	
