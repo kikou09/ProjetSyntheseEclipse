@@ -26,7 +26,8 @@ public class InterfaceFormeComposee extends InterfaceForme {
 	@Override
 	public void executerInteraction(String msg, Fenetre fen) throws Erreur {
 		
-		int i;
+		int i=1,j;
+		String fc = null;
 		int pos= msg.indexOf(";");
 		String tabMsg[]=msg.substring(pos+1).split(";");
 		String couleur = tabMsg[0];
@@ -38,11 +39,27 @@ public class InterfaceFormeComposee extends InterfaceForme {
 		catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		for(i=1;i<tabMsg.length-1;i++) {
-			Dessin.ihm.interagir(tabMsg[i],fen);
+		
+		//Traitement special si forme composee imbriquees
+		
+		while(i<tabMsg.length-1) {
+			if(tabMsg[i].equals("Forme Composee")) {
+				j=i;
+				while(!tabMsg[j].equals("/"))
+					j++;
+				while(i<=j) {
+					fc+=tabMsg[i]+ ";";
+					i++;
+				}
+				Dessin.ihm.interagir(fc,fen);
+			}
+			else {
+				Dessin.ihm.interagir(tabMsg[i],fen);
+				i++;
+			}
 		}
 		
-	
 	}
 
 }
+
